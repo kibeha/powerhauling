@@ -1,0 +1,10 @@
+{
+	"TableList" : [
+		{ "TableName" : "DEPT", "DestinationTableName" : "ORA_DEPT" },
+		{ "TableName" : "EMP", "DestinationTableName" : "ORA_EMP" },
+		{ "TableName" : "DULUX", "DestinationTableName" : "ORA_DULUX" },
+		{ "TableName" : "Canterbury_corpus", "DestinationTableName" : "ORA_CANTERBURY" },
+		{ "TableName" : "Car_sales_data", "DestinationTableName" : "ORA_CARSALES", "Predicate" : "rownum <= 100000" },
+		{ "TableName" : "CAR_SALES_DATA_MS", "DestinationTableName" : "ORA_CARSALES_MS", "Predicate" : "rownum <= 100000", "ColumnList" : ["SALESDATE", "SALESPERSON", "CUST_NAME", "CAR_MAKE", "CAR_MODEL", "CAR_YEAR"] }
+	]
+}

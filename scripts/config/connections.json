@@ -1,0 +1,40 @@
+{
+	"Oracle" : {
+		"DataSource" : "(DESCRIPTION = (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.56.148)(PORT = 1521))) (CONNECT_DATA = (SERVICE_NAME = pdb1)))",
+		"Host" : "192.168.56.148",
+		"Port" : "1521",
+		"ServiceName" : "pdb1",
+		"DBA" : {
+			"UserName" : "SYS",
+			"Password" : "SysPassword1"
+		},
+		"User" : {
+			"UserName" : "POWERHAUL",
+			"Password" : "PowerhaulPassword1"
+		}
+	},
+	"MSSql" : {
+		"Server" : "192.168.56.143",
+		"Catalog" : "scott",
+		"DBA" : {
+			"UserName" : "SA",
+			"Password" : "Password123"
+		},
+		"User" : {
+			"UserName" : "POWERHAUL",
+			"Password" : "PowerhaulPassword123"
+		}
+	},
+	"Postgres" : {
+		"Server" : "192.168.56.144",
+		"Database" : "myapp",
+		"DBA" : {
+			"UserName" : "postgres",
+			"Password" : "PGPassword123"
+		},
+		"User" : {
+			"UserName" : "powerhaul",
+			"Password" : "PowerhaulPassword123"
+		}
+	}
+}
