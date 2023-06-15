@@ -20,8 +20,6 @@ $TableRestrictions[3] = 'TABLE'
 #$ColumnRestrictions = New-Object -TypeName string[] -ArgumentList 4
 
 $AccessCon.GetSchema("Tables", $TableRestrictions) | ForEach-Object -Process {
-    #$ColumnRestrictions[2] = $_.TABLE_NAME
-    #$AccessCon.GetSchema("Columns", $ColumnRestrictions)
 
     $OraTableName = $_.TABLE_NAME
     Write-Output $OraTableName

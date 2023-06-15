@@ -32,7 +32,7 @@ $HttpClient = New-Object System.Net.Http.HttpClient
 $GetJson = $HttpClient.GetStringAsync("https://raw.githubusercontent.com/dariusk/corpora/master/data/colors/dulux.json")
 
 $DuluxDataTable = [Newtonsoft.Json.JsonConvert]::DeserializeObject($GetJson.Result, [System.Data.DataTable])
-$DuluxDataTableReader = New-Object System.Data.DataTableReader($DuluxDataTable)
+#$DuluxDataTableReader = New-Object System.Data.DataTableReader($DuluxDataTable)
 
 #$DuluxDataTableReader.GetSchemaTable()
 $DuluxDataTableReader.FieldCount
