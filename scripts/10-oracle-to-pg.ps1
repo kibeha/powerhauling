@@ -1,14 +1,23 @@
 <#
     https://github.com/kibeha/powerhauling
     Companion repository for presentation "Powerhauling Data with Powershell"
-    https://bit.ly/powerhaul by Kim Berg Hansen, https://www.kibeha.dk/
+    https://bit.ly/powerhauling by Kim Berg Hansen, https://www.kibeha.dk/
     If you are inspired to use this code, the responsibility is your own
 
     10-oracle-to-pg.ps1
 
     Example of copying data from selected tables in an Oracle schema to PG
 
-    This currently requires Powershell 5 due to use of SimplySql
+    This is tested in Powershell 7 using SimplySql 2.0.4.75
+
+    NOTES!
+
+    - If you've run any of the scripts that do Add-Type of the Oracle ddl, this script will raise an error
+      The solution is to run this script in another Powershell window
+
+    - There seems currently in SimplySql to be a bug (I think) in Invoke-SqlBulkCopy that causes it to fail for column/table names
+      containing spaces, even if they are quoted. There's no problem in Invoke-SqlQuery or Invoke-SqlUpdate.
+      Therefore Canterbury_corpus and Car_sales_data fail to BulkCopy.
 #>
 
 # Import the SimplySql module
@@ -33,7 +42,7 @@ try
     Open-OracleConnection -ConnectionName "Source"  -DataSource $ConConfig.Oracle.Host -Port $ConConfig.Oracle.Port -ServiceName $ConConfig.Oracle.ServiceName -Credential $OraUserCredential
 
     # Connect to PG - name the connection "Target"
-    Open-PostGreConnection -ConnectionName "Target" -Server $ConConfig.Postgres.Server -Database $ConConfig.Postgres.Database -Credential $PgUserCredential -TrustSSL
+    Open-PostGreConnection -ConnectionName "Target" -Server $ConConfig.Postgres.Server -Database $ConConfig.Postgres.Database -Credential $PgUserCredential
 
     # For each table in the config tablelist, process the block
     $TabConfig.TableList | ForEach-Object -process {

@@ -1,7 +1,7 @@
 <#
     https://github.com/kibeha/powerhauling
     Companion repository for presentation "Powerhauling Data with Powershell"
-    https://bit.ly/powerhaul by Kim Berg Hansen, https://www.kibeha.dk/
+    https://bit.ly/powerhauling by Kim Berg Hansen, https://www.kibeha.dk/
     If you are inspired to use this code, the responsibility is your own
 
     07-oracle-to-mssql.ps1
@@ -55,6 +55,13 @@ $OraCon.Open()
 # Create a Command object to be used for querying the source Oracle
 $OraCmd = $OraCon.CreateCommand()
 $OraCmd.CommandTimeout = 300
+
+# Particularly important settings if many LOBs are to be copied over high latency connection
+# Using defaults would fetch each individual LOB in separate roundtrips
+# -1 for InitialLOBFetchSize makes LOBs be prefetched as much as will fit in the FetchSize
+$OraCmd.FetchSize = 67108864 # 64 MB
+$OraCmd.InitialLOBFetchSize = -1
+$OraCmd.InitialLONGFetchSize = -1
 
 # We use GetSchema() of the connection to discover tables in source Oracle
 # See comments in file 05-oledb-to-oracle.ps1 how TableRestrictions work

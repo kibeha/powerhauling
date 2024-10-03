@@ -1,14 +1,14 @@
 <#
     https://github.com/kibeha/powerhauling
     Companion repository for presentation "Powerhauling Data with Powershell"
-    https://bit.ly/powerhaul by Kim Berg Hansen, https://www.kibeha.dk/
+    https://bit.ly/powerhauling by Kim Berg Hansen, https://www.kibeha.dk/
     If you are inspired to use this code, the responsibility is your own
 
     20-drop-pg-user.ps1
 
     Dropping the POWERHAUL schema in the PostgreSQL database
 
-    This currently requires Powershell 5 due to use of SimplySql
+    This is tested in Powershell 7 using SimplySql 2.0.4.75
 #>
 
 # Import the SimplySql module
@@ -21,9 +21,10 @@ $ConConfig = Get-Content -Raw config/connections.json | ConvertFrom-Json
 $PgDBACredential = New-Object System.Management.Automation.PSCredential($ConConfig.Postgres.DBA.UserName, (ConvertTo-SecureString $ConConfig.Postgres.DBA.Password -AsPlainText -Force))
 
 # Connect to PG
-Open-PostGreConnection -ConnectionName "PGDBA" -Server $ConConfig.Postgres.Server -Database $ConConfig.Postgres.Database -Credential $PgDBACredential -TrustSSL
+Open-PostGreConnection -ConnectionName "PGDBA" -Server $ConConfig.Postgres.Server -Database $ConConfig.Postgres.Database -Credential $PgDBACredential
 
 # Drop user POWERHAUL
+Invoke-SqlUpdate -ConnectionName "PGDBA" -Query ("drop owned by " + $ConConfig.Postgres.User.UserName)
 Invoke-SqlUpdate -ConnectionName "PGDBA" -Query ("drop user " + $ConConfig.Postgres.User.UserName)
 
 # Drop schema POWERHAUL

@@ -1,7 +1,7 @@
 <#
     https://github.com/kibeha/powerhauling
     Companion repository for presentation "Powerhauling Data with Powershell"
-    https://bit.ly/powerhaul by Kim Berg Hansen, https://www.kibeha.dk/
+    https://bit.ly/powerhauling by Kim Berg Hansen, https://www.kibeha.dk/
     If you are inspired to use this code, the responsibility is your own
 
     04-http-to-oracle.ps1

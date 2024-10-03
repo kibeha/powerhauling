@@ -1,7 +1,7 @@
 <#
     https://github.com/kibeha/powerhauling
     Companion repository for presentation "Powerhauling Data with Powershell"
-    https://bit.ly/powerhaul by Kim Berg Hansen, https://www.kibeha.dk/
+    https://bit.ly/powerhauling by Kim Berg Hansen, https://www.kibeha.dk/
     If you are inspired to use this code, the responsibility is your own
 
     08-mssql-to-oracle.ps1
@@ -28,7 +28,7 @@ $OraUserCredential = New-Object OracleCredential($ConConfig.Oracle.User.UserName
 # Setup a credential as POWERHAUL in MSSQL
 $SqlUserPsw = ConvertTo-SecureString $ConConfig.MSSql.User.Password -AsPlainText -Force
 $SqlUserPsw.MakeReadOnly()
-$SqlUserCredential = New-Object SqlCredential($ConConfig.MSSql.User.UserName, $SqlUserPsw)
+$SqlUserCredential = New-Object System.Data.SqlClient.SqlCredential($ConConfig.MSSql.User.UserName, $SqlUserPsw)
 
 # Connect to Oracle
 $OraCon = New-Object OracleConnection(("data source=" + $ConConfig.Oracle.DataSource), $OraUserCredential)

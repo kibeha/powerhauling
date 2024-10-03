@@ -1,9 +1,9 @@
 {
 	"Oracle" : {
-		"DataSource" : "(DESCRIPTION = (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.56.148)(PORT = 1521))) (CONNECT_DATA = (SERVICE_NAME = pdb1)))",
-		"Host" : "192.168.56.148",
+		"DataSource" : "(DESCRIPTION = (ADDRESS_LIST = (ADDRESS = (PROTOCOL = TCP)(HOST = 192.168.56.140)(PORT = 1521))) (CONNECT_DATA = (SERVICE_NAME = freepdb1)))",
+		"Host" : "192.168.56.140",
 		"Port" : "1521",
-		"ServiceName" : "pdb1",
+		"ServiceName" : "freepdb1",
 		"DBA" : {
 			"UserName" : "SYS",
 			"Password" : "SysPassword1"
